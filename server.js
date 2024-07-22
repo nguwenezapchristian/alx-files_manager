@@ -1,14 +1,15 @@
-// express server
+/* eslint-disable import/no-unresolved */
+// eslint-disable-next-line no-unused-vars
 import express from 'express';
-import dotenv from 'dotenv';
-// eslint-disable-next-line import/extensions
-import routes from '../routes/index.js';
+import startServer from './libs/boot';
+import injectRoutes from './routes';
+import injectMiddlewares from './libs/middlewares';
 
-dotenv.config();
+// create express server
+const server = express();
 
-const app = express();
-const port = process.env.PORT || 5000;
+injectMiddlewares(server);
+injectRoutes(server);
+startServer(server);
 
-app.use('/', routes);
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
+export default server;
