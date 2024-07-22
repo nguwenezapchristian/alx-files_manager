@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const sha1 = require('sha1');
 const dbClient = require('../utils/db');
 

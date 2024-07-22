@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+// eslint-disable-next-line no-unused-vars
 const mime = require('mime-types');
 const redisClient = require('../utils/redis');
 const dbClient = require('../utils/db');
@@ -7,7 +9,9 @@ const dbClient = require('../utils/db');
 class FilesController {
   static async postUpload(req, res) {
     const token = req.headers['x-token'];
-    const { name, type, parentId = 0, isPublic = false, data } = req.body;
+    const {
+      name, type, parentId = 0, isPublic = false, data,
+    } = req.body;
 
     if (!token) {
       return res.status(401).json({ error: 'Unauthorized' });
