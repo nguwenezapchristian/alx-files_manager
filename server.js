@@ -1,15 +1,14 @@
-/* eslint-disable import/no-unresolved */
-// eslint-disable-next-line no-unused-vars
-import express from 'express';
-import startServer from './libs/boot';
-import injectRoutes from './routes';
-import injectMiddlewares from './libs/middlewares';
+const express = require('express');
+const routes = require('./routes/index');
 
-// create express server
-const server = express();
+const app = express();
+const port = process.env.PORT || 5000;
 
-injectMiddlewares(server);
-injectRoutes(server);
-startServer(server);
+app.use(express.json());
+app.use('/', routes);
 
-export default server;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+module.exports = app;
